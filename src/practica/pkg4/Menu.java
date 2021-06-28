@@ -15,7 +15,9 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
+        super("Escaleras y Serpientes");
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -99,7 +101,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JugarActionPerformed
-
+        Tablero T = new Tablero();
+        T.setVisible(true);
+        dispose();
     }//GEN-LAST:event_JugarActionPerformed
 
     private void InsertarjugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarjugadoresActionPerformed

@@ -8,11 +8,12 @@ public class Tabladeusuarios extends javax.swing.JFrame {
     
     private ArrayList<Usuarios> Lis;
     public Tabladeusuarios() {
-        
+        super("Escaleras y Serpientes");
         Lis = new ArrayList<Usuarios>();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
