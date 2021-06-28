@@ -27,21 +27,96 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        Salir = new javax.swing.JButton();
+        Reportes = new javax.swing.JButton();
+        Insertarjugadores = new javax.swing.JButton();
+        Jugar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Salir.setBackground(new java.awt.Color(255, 255, 255));
+        Salir.setForeground(new java.awt.Color(0, 0, 0));
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 60, -1));
+
+        Reportes.setBackground(new java.awt.Color(255, 255, 255));
+        Reportes.setForeground(new java.awt.Color(0, 0, 0));
+        Reportes.setText("Reportes");
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
+
+        Insertarjugadores.setBackground(new java.awt.Color(255, 255, 255));
+        Insertarjugadores.setForeground(new java.awt.Color(0, 0, 0));
+        Insertarjugadores.setText("Insertar Jugadores");
+        Insertarjugadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertarjugadoresActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Insertarjugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
+
+        Jugar.setBackground(new java.awt.Color(255, 255, 255));
+        Jugar.setForeground(new java.awt.Color(0, 0, 0));
+        Jugar.setText("Jugar");
+        Jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JugarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Serpientes.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JugarActionPerformed
+
+    }//GEN-LAST:event_JugarActionPerformed
+
+    private void InsertarjugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarjugadoresActionPerformed
+        Tabladeusuarios tabu = new Tabladeusuarios();
+        tabu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_InsertarjugadoresActionPerformed
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        System.exit(WIDTH);
+    }//GEN-LAST:event_SalirActionPerformed
+
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        Reportes R = new Reportes();
+        R.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ReportesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +154,12 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Insertarjugadores;
+    private javax.swing.JButton Jugar;
+    private javax.swing.JButton Reportes;
+    private javax.swing.JButton Salir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
