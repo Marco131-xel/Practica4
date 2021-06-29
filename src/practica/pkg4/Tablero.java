@@ -2,28 +2,31 @@
 package practica.pkg4;
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.util.Random;
 
 
 public class Tablero extends JFrame implements ActionListener{
     
-    //Variables 
-    JLabel c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16,c17, c18, c19, c20, c21, c22, c23, c24, c25,
-    c26, c27, c28, c29, c30,c31, c32, c33, c34, c35, c36, c37, c38, c39, c40, c41, c42, c43, c44, c45, c46, c47, c48;
-    Color casillas, fondo, jugador, casilla2;
+    JLabel label[] = new JLabel[64];
+    Color casillas, fondo, jugador, casilla2, jugador2;
     JButton movimiento;
-    int dadito, player;
+    //JButton Volver;
+    private int dadito, player, player2;
+    FondoPanel pantalla = new FondoPanel(); 
     
     
     public Tablero() {
         super("Escaleras y Serpientes");
-        initComponents();
-        this.setSize(600,400);
+        this.setContentPane(pantalla);
+        this.setSize(600,500);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane();
@@ -32,505 +35,340 @@ public class Tablero extends JFrame implements ActionListener{
         this.setVisible(true);
     }
     
-        public void objetos(){
+    
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/pictures/Fondojuego.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            
+            setOpaque(false);
+            super.paint(g);
+                    
+        }
+    }
+    
+    ///pictures/Fondojuego.jpg
+    
+    public void objetos(){
         casillas = new Color (255,255,0);
         casilla2 = new Color (255,0,0);
         fondo = new Color (0,255,255);
-        jugador = new Color (0,0,0);
-        c0 = new JLabel("");
-        c1 = new JLabel("");
-        c2 = new JLabel("");
-        c3 = new JLabel("");
-        c4 = new JLabel("");
-        c5 = new JLabel("");
-        c6 = new JLabel("");
-        c7 = new JLabel("");
-        c8 = new JLabel("");
-        c9 = new JLabel("");
-        c10 = new JLabel("");
-        c11 = new JLabel("");
-        c12 = new JLabel("");
-        c13 = new JLabel("");
-        c14 = new JLabel("");
-        c15 = new JLabel("");
-        c16 = new JLabel("");
-        c17 = new JLabel("");
-        c18 = new JLabel("");
-        c19 = new JLabel("");
-        c20 = new JLabel("");
-        c21 = new JLabel("");
-        c22 = new JLabel("");
-        c23 = new JLabel("");
-        c24 = new JLabel("");
-        c25 = new JLabel("");
-        c26 = new JLabel("");
-        c27 = new JLabel("");
-        c28 = new JLabel("");
-        c29 = new JLabel("");
-        c30 = new JLabel("");
-        c31 = new JLabel("");
-        c32 = new JLabel("");
-        c33 = new JLabel("");
-        c34 = new JLabel("");
-        c35 = new JLabel("");
-        c36 = new JLabel("");
-        c37 = new JLabel("");
-        c38 = new JLabel("");
-        c39 = new JLabel("");
-        c40 = new JLabel("");
-        c41 = new JLabel("");
-        c42 = new JLabel("");
-        c43 = new JLabel("");
-        c44 = new JLabel("");
-        c45 = new JLabel("");
-        c46 = new JLabel("");
-        c47 = new JLabel("");
-        c48 = new JLabel("");
+        jugador = new Color (0,255,0);
+        jugador2 = new Color (0,0,255);
+       
+        for (int i = 0; i < label.length; i++) {
+            label[i] = new JLabel("      "+(i+1)+"   ");
+        }
         
         movimiento = new JButton("Dado");
+       // Volver = new JButton("Volver");
         
         this.setLayout(null);
         
-        c1.setBounds(10, 10, 50, 50);
-        c2.setBounds(60, 10, 50, 50);
-        c3.setBounds(110, 10, 50, 50);
-        c4.setBounds(160, 10, 50, 50);
-        c5.setBounds(210, 10, 50, 50);
-        c6.setBounds(260, 10, 50, 50);
-        c7.setBounds(310, 10, 50, 50);
-        c8.setBounds(360, 10, 50, 50);
+        label[0].setBounds(10, 10, 50, 50);
+        label[1].setBounds(60, 10, 50, 50);
+        label[2].setBounds(110, 10, 50, 50);
+        label[3].setBounds(160, 10, 50, 50);
+        label[4].setBounds(210, 10, 50, 50);
+        label[5].setBounds(260, 10, 50, 50);
+        label[6].setBounds(310, 10, 50, 50);
+        label[7].setBounds(360, 10, 50, 50);
         
         //SEgunda fila
-        c9.setBounds(10, 60, 50, 50);
-        c10.setBounds(60, 60, 50, 50);
-        c11.setBounds(110, 60, 50, 50);
-        c12.setBounds(160, 60, 50, 50);
-        c13.setBounds(210, 60, 50, 50);
-        c14.setBounds(260, 60, 50, 50);
-        c15.setBounds(310, 60, 50, 50);
-        c16.setBounds(360, 60, 50, 50);
+        label[8].setBounds(10, 60, 50, 50);
+        label[9].setBounds(60, 60, 50, 50);
+        label[10].setBounds(110, 60, 50, 50);
+        label[11].setBounds(160, 60, 50, 50);
+        label[12].setBounds(210, 60, 50, 50);
+        label[13].setBounds(260, 60, 50, 50);
+        label[14].setBounds(310, 60, 50, 50);
+        label[15].setBounds(360, 60, 50, 50);
         
         //Tercerafila
-        c17.setBounds(10, 110, 50, 50);
-        c18.setBounds(60, 110, 50, 50);
-        c19.setBounds(110, 110, 50, 50);
-        c20.setBounds(160, 110, 50, 50);
-        c21.setBounds(210, 110, 50, 50);
-        c22.setBounds(260, 110, 50, 50);
-        c23.setBounds(310, 110, 50, 50);
-        c24.setBounds(360, 110, 50, 50);
+        label[16].setBounds(10, 110, 50, 50);
+        label[17].setBounds(60, 110, 50, 50);
+        label[18].setBounds(110, 110, 50, 50);
+        label[19].setBounds(160, 110, 50, 50);
+        label[20].setBounds(210, 110, 50, 50);
+        label[21].setBounds(260, 110, 50, 50);
+        label[22].setBounds(310, 110, 50, 50);
+        label[23].setBounds(360, 110, 50, 50);
         
         //cuartafila
-        c25.setBounds(10, 160, 50, 50);
-        c26.setBounds(60, 160, 50, 50);
-        c27.setBounds(110, 160, 50, 50);
-        c28.setBounds(160, 160, 50, 50);
-        c29.setBounds(210, 160, 50, 50);
-        c30.setBounds(260, 160, 50, 50);
-        c31.setBounds(310, 160, 50, 50);
-        c32.setBounds(360, 160, 50, 50);
+        label[24].setBounds(10, 160, 50, 50);
+        label[25].setBounds(60, 160, 50, 50);
+        label[26].setBounds(110, 160, 50, 50);
+        label[27].setBounds(160, 160, 50, 50);
+        label[28].setBounds(210, 160, 50, 50);
+        label[29].setBounds(260, 160, 50, 50);
+        label[30].setBounds(310, 160, 50, 50);
+        label[31].setBounds(360, 160, 50, 50);
         
         //quintafila
-        c33.setBounds(10, 210, 50, 50);
-        c34.setBounds(60, 210, 50, 50);
-        c35.setBounds(110, 210, 50, 50);
-        c36.setBounds(160, 210, 50, 50);
-        c37.setBounds(210, 210, 50, 50);
-        c38.setBounds(260, 210, 50, 50);
-        c39.setBounds(310, 210, 50, 50);
-        c40.setBounds(360, 210, 50, 50);
+        label[32].setBounds(10, 210, 50, 50);
+        label[33].setBounds(60, 210, 50, 50);
+        label[34].setBounds(110, 210, 50, 50);
+        label[35].setBounds(160, 210, 50, 50);
+        label[36].setBounds(210, 210, 50, 50);
+        label[37].setBounds(260, 210, 50, 50);
+        label[38].setBounds(310, 210, 50, 50);
+        label[39].setBounds(360, 210, 50, 50);
         
         //sextafila
-        c41.setBounds(10, 260, 50, 50);
-        c42.setBounds(60, 260, 50, 50);
-        c43.setBounds(110, 260, 50, 50);
-        c44.setBounds(160, 260, 50, 50);
-        c45.setBounds(210, 260, 50, 50);
-        c46.setBounds(260, 260, 50, 50);
-        c47.setBounds(310, 260, 50, 50);
-        c48.setBounds(360, 260, 50, 50);
+        label[40].setBounds(10, 260, 50, 50);
+        label[41].setBounds(60, 260, 50, 50);
+        label[42].setBounds(110, 260, 50, 50);
+        label[43].setBounds(160, 260, 50, 50);
+        label[44].setBounds(210, 260, 50, 50);
+        label[45].setBounds(260, 260, 50, 50);
+        label[46].setBounds(310, 260, 50, 50);
+        label[47].setBounds(360, 260, 50, 50);
+        
+        label[48].setBounds(10, 310, 50, 50);
+        label[49].setBounds(60, 310, 50, 50);
+        label[50].setBounds(110, 310, 50, 50);
+        label[51].setBounds(160, 310, 50, 50);
+        label[52].setBounds(210, 310, 50, 50);
+        label[53].setBounds(260, 310, 50, 50);
+        label[54].setBounds(310, 310, 50, 50);
+        label[55].setBounds(360, 310, 50, 50);
+        
+        label[56].setBounds(10, 360, 50, 50);
+        label[57].setBounds(60, 360, 50, 50);
+        label[58].setBounds(110, 360, 50, 50);
+        label[59].setBounds(160, 360, 50, 50);
+        label[60].setBounds(210, 360, 50, 50);
+        label[61].setBounds(260, 360, 50, 50);
+        label[62].setBounds(310, 360, 50, 50);
+        label[63].setBounds(360, 360, 50, 50);
+        movimiento.setBounds(480,350,80,30);
 
-        movimiento.setBounds(430,300,80,30);
+        //Volver.setBounds(480,150,80,30);
         
         tab();
-        c1.setBackground(jugador);
+        label[0].setBackground(jugador);
+       //label[1].setBackground(jugador2);
 
-        this.add(c0);
-        this.add(c1);
-        this.add(c2);
-        this.add(c3);
-        this.add(c4);
-        this.add(c5);
-        this.add(c6);
-        this.add(c7);
-        this.add(c8);
-        this.add(c9);
-        this.add(c10);
-        this.add(c11);
-        this.add(c12);
-        this.add(c13);
-        this.add(c14);
-        this.add(c15);
-        this.add(c16);
-        this.add(c17);
-        this.add(c18);
-        this.add(c19);
-        this.add(c20);
-        this.add(c21);
-        this.add(c22);
-        this.add(c23);
-        this.add(c24);
-        this.add(c25);
-        this.add(c26);
-        this.add(c27);
-        this.add(c28);
-        this.add(c29);
-        this.add(c30);
-        this.add(c31);
-        this.add(c32);
-        this.add(c33);
-        this.add(c34);
-        this.add(c35);
-        this.add(c36);
-        this.add(c37);
-        this.add(c38);
-        this.add(c39);
-        this.add(c40);
-        this.add(c41);
-        this.add(c42);
-        this.add(c43);
-        this.add(c44);
-        this.add(c45);
-        this.add(c46);
-        this.add(c47);
-        this.add(c48);
+        for (int i = 0; i < label.length; i++) {
+            this.add(label[i]);
+        }
 
         this.add(movimiento);
         movimiento.addActionListener(this);
+        
+        //this.add(Volver);
+        //Volver.addActionListener(this);
+
     }
         
-        public void tab(){
-        c0.setOpaque(true);
-        c1.setOpaque(true);
-        c2.setOpaque(true);
-        c3.setOpaque(true);
-        c4.setOpaque(true);
-        c5.setOpaque(true);
-        c6.setOpaque(true);
-        c7.setOpaque(true);
-        c8.setOpaque(true);
-        c9.setOpaque(true);
-        c10.setOpaque(true);
-        c11.setOpaque(true);
-        c12.setOpaque(true);
-        c13.setOpaque(true);
-        c14.setOpaque(true);
-        c15.setOpaque(true);
-        c16.setOpaque(true);
-        c17.setOpaque(true);
-        c18.setOpaque(true);
-        c19.setOpaque(true);
-        c20.setOpaque(true);
-        c21.setOpaque(true);
-        c22.setOpaque(true);
-        c23.setOpaque(true);
-        c24.setOpaque(true);
-        c25.setOpaque(true);
-        c26.setOpaque(true);
-        c27.setOpaque(true);
-        c28.setOpaque(true);
-        c29.setOpaque(true);
-        c30.setOpaque(true);
-        c31.setOpaque(true);
-        c32.setOpaque(true);
-        c33.setOpaque(true);
-        c34.setOpaque(true);
-        c35.setOpaque(true);
-        c36.setOpaque(true);
-        c37.setOpaque(true);
-        c38.setOpaque(true);
-        c39.setOpaque(true);
-        c40.setOpaque(true);
-        c41.setOpaque(true);
-        c42.setOpaque(true);
-        c43.setOpaque(true);
-        c44.setOpaque(true);
-        c45.setOpaque(true);
-        c46.setOpaque(true);
-        c47.setOpaque(true);
-        c48.setOpaque(true);
+    public void tab(){
+               for (int i = 0; i < label.length; i++) {
+            label[i].setOpaque(true);
+        }
         
-        c1.setBackground(casillas);
-        c2.setBackground(casilla2);
-        c3.setBackground(casillas);
-        c4.setBackground(casilla2);
-        c5.setBackground(casillas);
-        c6.setBackground(casilla2);
-        c7.setBackground(casillas);
-        c8.setBackground(casilla2);
+        
+         //primerafila
+        label[0].setBackground(casillas);
+        label[1].setBackground(casilla2);
+        label[2].setBackground(casillas);
+        label[3].setBackground(casilla2);
+        label[4].setBackground(casillas);
+        label[5].setBackground(casilla2);
+        label[6].setBackground(casillas);
+        label[7].setBackground(casilla2);
         
         //Segundafila
-        c9.setBackground(casilla2);
-        c10.setBackground(casillas);
-        c11.setBackground(casilla2);
-        c12.setBackground(casillas);
-        c13.setBackground(casilla2);
-        c14.setBackground(casillas);
-        c15.setBackground(casilla2);
-        c16.setBackground(casillas);
+        label[8].setBackground(casilla2);
+        label[9].setBackground(casillas);
+        label[10].setBackground(casilla2);
+        label[11].setBackground(casillas);
+        label[12].setBackground(casilla2);
+        label[13].setBackground(casillas);
+        label[14].setBackground(casilla2);
+        label[15].setBackground(casillas);
         
-        //TerceraFila
-        c17.setBackground(casillas);
-        c18.setBackground(casilla2);
-        c19.setBackground(casillas);
-        c20.setBackground(casilla2);
-        c21.setBackground(casillas);
-        c22.setBackground(casilla2);
-        c23.setBackground(casillas);
-        c24.setBackground(casilla2);
+        //tercerafila
+        label[16].setBackground(casillas);
+        label[17].setBackground(casilla2);
+        label[18].setBackground(casillas);
+        label[19].setBackground(casilla2);
+        label[20].setBackground(casillas);
+        label[21].setBackground(casilla2);
+        label[22].setBackground(casillas);
+        label[23].setBackground(casilla2);
+        
+        
         //Cuartafila
-        c25.setBackground(casilla2);
-        c26.setBackground(casillas);
-        c27.setBackground(casilla2);
-        c28.setBackground(casillas);
-        c29.setBackground(casilla2);
-        c30.setBackground(casillas);
-        c31.setBackground(casilla2);
-        c32.setBackground(casillas);
+        label[24].setBackground(casilla2);
+        label[25].setBackground(casillas);
+        label[26].setBackground(casilla2);
+        label[27].setBackground(casillas);
+        label[28].setBackground(casilla2);
+        label[29].setBackground(casillas);
+        label[30].setBackground(casilla2);
+        label[31].setBackground(casillas);
         
         //Quintafila
-        c33.setBackground(casillas);
-        c34.setBackground(casilla2);
-        c35.setBackground(casillas);
-        c36.setBackground(casilla2);
-        c37.setBackground(casillas);
-        c38.setBackground(casilla2);
-        c39.setBackground(casillas);
-        c40.setBackground(casilla2);
+        label[32].setBackground(casillas);
+        label[33].setBackground(casilla2);
+        label[34].setBackground(casillas);
+        label[35].setBackground(casilla2);
+        label[36].setBackground(casillas);
+        label[37].setBackground(casilla2);
+        label[38].setBackground(casillas);
+        label[39].setBackground(casilla2);
         
         //sextafila
-        c41.setBackground(casilla2);
-        c42.setBackground(casillas);
-        c43.setBackground(casilla2);
-        c44.setBackground(casillas);
-        c45.setBackground(casilla2);
-        c46.setBackground(casillas);
-        c47.setBackground(casilla2);
-        c48.setBackground(casillas);
+        label[40].setBackground(casilla2);
+        label[41].setBackground(casillas);
+        label[42].setBackground(casilla2);
+        label[43].setBackground(casillas);
+        label[44].setBackground(casilla2);
+        label[45].setBackground(casillas);
+        label[46].setBackground(casilla2);
+        label[47].setBackground(casillas);
         
+          //septimafila
+        label[48].setBackground(casillas);
+        label[49].setBackground(casilla2);
+        label[50].setBackground(casillas);
+        label[51].setBackground(casilla2);
+        label[52].setBackground(casillas);
+        label[53].setBackground(casilla2);
+        label[54].setBackground(casillas);
+        label[55].setBackground(casilla2);
+        
+        
+          //Octavafila
+        label[56].setBackground(casilla2);
+        label[57].setBackground(casillas);
+        label[58].setBackground(casilla2);
+        label[59].setBackground(casillas);
+        label[60].setBackground(casilla2);
+        label[61].setBackground(casillas);
+        label[62].setBackground(casilla2);
+        label[63].setBackground(casillas);
     }
     
-        public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == movimiento){
-            dadito = (int)(((Math.random())*60)/10)+1;
-            JOptionPane.showMessageDialog(null,dadito);
-            player = player + dadito;
-            switch(player){
-                case 0:
-                    tab();
-                    c1.setBackground(jugador);
-                break;
-                case 1:
-                    tab();
-                    c2.setBackground(jugador);
-                break;
-                case 2:
-                    tab();
-                    c3.setBackground(jugador);
-                break;
-                case 3:
-                    tab();
-                    c4.setBackground(jugador);
-                break;
-                case 4:
-                    tab();
-                    c5.setBackground(jugador);
-                break;
-                case 5:
-                    tab();
-                    c6.setBackground(jugador);
-                break;
-                case 6:
-                    tab();
-                    c7.setBackground(jugador);
-                break;
-                case 7:
-                    tab();
-                    c8.setBackground(jugador);
-                break;
-                case 8:
-                    tab();
-                    c9.setBackground(jugador);
-                break;
-                case 9:
-                    tab();
-                    c10.setBackground(jugador);
-                break;
-                case 10:
-                    tab();
-                    c11.setBackground(jugador);
-                break;
+    
+    private JLabel[] j1 = new JLabel [64];
+    private JLabel[] j2 = new JLabel [64];
+    
+    private int posj1 = 0;
+    private int posj2 = 0;
+
+    private int turno = 0;
+    
+    
+    public void actionPerformed(ActionEvent ae) {
+        if (turno == 0) {
+            JOptionPane.showMessageDialog(null, "Turno Jugador 1");
+            
+            int espacios  = (int)(((Math.random())*60)/10)+1;
+            
+            posj1+=espacios;
+            int postablero = posj1+1;
+            JOptionPane.showMessageDialog(null, "Jugador 1 has sacado un '"+ espacios +"' te mueves a la posición '"+postablero+"' ");
+            
+            for (int i = 0; i < 64; i++) {
                 
-                //Segund parte
-                case 11:
+                if (posj1 == 4) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza hasta la casilla 10");
+                    posj1= 9;
+                }
+                if (posj1 == 9) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza 4 espacios");
+                    posj1= 13;
+                }
+                if (posj1 == 30) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 10 espacios");
+                    posj1= 20;
+                }
+                if (posj1 == 54) {
+                    JOptionPane.showMessageDialog(null, "Acabas de perder un turno");
+                    posj1= 53;
+                }
+                if (posj1 == 60) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 8 espacios");
+                    posj1= 52;
+                }
+                        
+                    //Pintar tablero
+                for (int j = 0; j < posj1; j++) { 
                     tab();
-                    c12.setBackground(jugador);
-                break;
-                case 12:
-                    tab();
-                    c13.setBackground(jugador);
-                break;
-                case 13:
-                    tab();
-                    c14.setBackground(jugador);
-                break;
-                case 14:
-                    tab();
-                    c15.setBackground(jugador);
-                break;
-                case 15:
-                    tab();
-                    c16.setBackground(jugador);
-                break;
-                case 16:
-                    tab();
-                    c17.setBackground(jugador);
-                break;
-                case 17:
-                    tab();
-                    c18.setBackground(jugador);
-                break;
-                case 18:
-                    tab();
-                    c19.setBackground(jugador);
-                break;
-                case 19:
-                    tab();
-                    c20.setBackground(jugador);
-                break;
-                case 20:
-                    tab();
-                    c21.setBackground(jugador);
-                break;
-                
-                //Tercera parte
-                case 21:
-                    tab();
-                    c22.setBackground(jugador);
-                break;
-                case 22:
-                    tab();
-                    c23.setBackground(jugador);
-                break;
-                case 23:
-                    tab();
-                    c24.setBackground(jugador);
-                break;
-                case 24:
-                    tab();
-                    c25.setBackground(jugador);
-                break;
-                case 25:
-                    tab();
-                    c26.setBackground(jugador);
-                break;
-                case 26:
-                    tab();
-                    c27.setBackground(jugador);
-                break;
-                case 27:
-                    tab();
-                    c28.setBackground(jugador);
-                break;
-                case 28:
-                    tab();
-                    c29.setBackground(jugador);
-                break;
-                case 29:
-                    tab();
-                    c30.setBackground(jugador);
-                break;
-                case 30:
-                    tab();
-                    c31.setBackground(jugador);
-                break;
-                
-                //Cuarta parte
-                case 31:
-                    tab();
-                    c32.setBackground(jugador);
-                break;
-                case 32:
-                    tab();
-                    c33.setBackground(jugador);
-                break;
-                case 33:
-                    tab();
-                    c34.setBackground(jugador);
-                break;
-                case 34:
-                    tab();
-                    c35.setBackground(jugador);
-                break;
-                case 35:
-                    tab();
-                    c36.setBackground(jugador);
-                break;
-                case 36:
-                    tab();
-                    c37.setBackground(jugador);
-                break;
-                case 37:
-                    tab();
-                    c38.setBackground(jugador);
-                break;
-                case 38:
-                    tab();
-                    c39.setBackground(jugador);
-                break;
-                case 39:
-                    tab();
-                    c40.setBackground(jugador);
-                break;
-                case 40:
-                    tab();
-                    c41.setBackground(jugador);
-                break;
-                
-                //Quinta parte
-                case 41:
-                    tab();
-                    c42.setBackground(jugador);
-                break;
-                case 42:
-                    tab();
-                    c43.setBackground(jugador);
-                break;
-                case 43:
-                    tab();
-                    c44.setBackground(jugador);
-                break;
-                case 44:
-                    tab();
-                    c45.setBackground(jugador);
-                break;
-                case 45:
-                    tab();
-                    c46.setBackground(jugador);
-                break;
-                case 46:
-                    tab();
-                    c47.setBackground(jugador);
-                break;
-                case 47:
-                    tab();
-                    c48.setBackground(jugador);
-                break;
+                    label[posj1].setBackground(jugador);  
+                    label[posj2].setBackground(jugador2);
+                 
+                }
             }
+            if (posj1 >=63) {
+                JOptionPane.showMessageDialog(null, "El Jugador 1 es el Ganador");
+                }
+
+            
+            turno =1;
+              
+            
+ 
+        } else if (turno == 1) {
+            JOptionPane.showMessageDialog(null, "Turno Jugador 2");
+
+            int espacios  = (int)(((Math.random())*60)/10)+1;
+
+            posj2+=espacios;
+            int postablero = posj2+1;
+            JOptionPane.showMessageDialog(null, "Jugador 2 has sacado un '"+ espacios +"' te mueves a la posición '"+postablero+"' ");
+
+            for (int i = 0; i < 64; i++) {
+
+                if (posj2 == 4) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza hasta la casilla 10");
+                    posj2= 9;
+                }
+                if (posj2 == 9) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza 4 espacios");
+                    posj2= 13;
+                }
+                if (posj2 == 30) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 10 espacios");
+                    posj2= 21;
+                }
+                if (posj2 == 54) {
+                    JOptionPane.showMessageDialog(null, "Acabas de perder un turno");
+                    posj2= 53;
+                }
+                if (posj2 == 60) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 8 espacios");
+                    posj2= 52;
+
+
+                }
+
+                //Pintar Tablero
+                for (int j = 0; j < posj2; j++) {  
+                    tab();
+                    label[posj1].setBackground(jugador);  
+                    label[posj2].setBackground(jugador2); 
+                    
+                }
+      
+            }
+            if (posj2 >=63) {
+                JOptionPane.showMessageDialog(null, "El Jugador 2 es el Ganador");
+                }
+            
+            turno =0;
+      
         }
+
       
     }
+
     
+    //Lo de Swing   
+    //Lo se Swing
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -555,15 +393,17 @@ public class Tablero extends JFrame implements ActionListener{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(528, Short.MAX_VALUE)
                 .addComponent(Volver3)
-                .addGap(0, 402, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 326, Short.MAX_VALUE)
-                .addComponent(Volver3))
+                .addContainerGap(448, Short.MAX_VALUE)
+                .addComponent(Volver3)
+                .addGap(22, 22, 22))
         );
 
         pack();

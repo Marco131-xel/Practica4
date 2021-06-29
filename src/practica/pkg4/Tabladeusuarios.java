@@ -1,6 +1,10 @@
 
 package practica.pkg4;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -11,6 +15,7 @@ public class Tabladeusuarios extends javax.swing.JFrame {
         super("Escaleras y Serpientes");
         Lis = new ArrayList<Usuarios>();
         initComponents();
+        //cargar();
         this.setLocationRelativeTo(null);
     }
     
@@ -25,7 +30,7 @@ public class Tabladeusuarios extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -35,9 +40,10 @@ public class Tabladeusuarios extends javax.swing.JFrame {
         Insertar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         Cambiar = new javax.swing.JButton();
+        Volver = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tablajugadores = new javax.swing.JTable();
-        Volver = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -53,23 +59,31 @@ public class Tabladeusuarios extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 130, 40));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Apellidos");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         ID.setBackground(new java.awt.Color(255, 255, 255));
         ID.setForeground(new java.awt.Color(0, 0, 0));
@@ -78,12 +92,15 @@ public class Tabladeusuarios extends javax.swing.JFrame {
                 IDActionPerformed(evt);
             }
         });
+        jPanel2.add(ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 80, 30));
 
         Nombre.setBackground(new java.awt.Color(255, 255, 255));
         Nombre.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 190, 30));
 
         Apellidos.setBackground(new java.awt.Color(255, 255, 255));
         Apellidos.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 170, 30));
 
         Insertar.setBackground(new java.awt.Color(255, 255, 255));
         Insertar.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,6 +110,7 @@ public class Tabladeusuarios extends javax.swing.JFrame {
                 InsertarActionPerformed(evt);
             }
         });
+        jPanel2.add(Insertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
 
         Eliminar.setBackground(new java.awt.Color(255, 255, 255));
         Eliminar.setForeground(new java.awt.Color(0, 0, 0));
@@ -102,6 +120,7 @@ public class Tabladeusuarios extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
+        jPanel2.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
         Cambiar.setBackground(new java.awt.Color(255, 255, 255));
         Cambiar.setForeground(new java.awt.Color(0, 0, 0));
@@ -111,6 +130,15 @@ public class Tabladeusuarios extends javax.swing.JFrame {
                 CambiarActionPerformed(evt);
             }
         });
+        jPanel2.add(Cambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, -1, -1));
+
+        Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         Tablajugadores.setBackground(new java.awt.Color(255, 255, 255));
         Tablajugadores.setForeground(new java.awt.Color(0, 0, 0));
@@ -129,135 +157,91 @@ public class Tabladeusuarios extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(Tablajugadores);
 
-        Volver.setText("Volver");
-        Volver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VolverActionPerformed(evt);
-            }
-        });
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, 130));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Insertar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(jLabel3))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(Volver)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Eliminar)
-                            .addComponent(Cambiar))))
-                .addGap(28, 28, 28))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Volver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Insertar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(78, 78, 78))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(Cambiar)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3))
-                            .addComponent(Eliminar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Fondousuario.jpg"))); // NOI18N
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IDActionPerformed
     
     private void limpiar(){
         Nombre.setText("");
         Apellidos.setText("");
         ID.setText("");
     }
+                
+    private void guardar(){
+        File file = new File("Usuarios.txt");
+        PrintWriter Escribe;
+        if(!file.exists()){
+            try{
+                file.createNewFile();
             
-    private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
-       String nombre, apellidos;
-       int id;
-       try{
-           nombre = Nombre.getText();
-           apellidos = Apellidos.getText();
-           id = Integer.parseInt(ID.getText());
-           Lis.add(new Usuarios(nombre, apellidos, id));
-           
-       }catch(Exception e){
-           JOptionPane.showMessageDialog(null, "ingresar los datos");
-           
-       }
-       limpiar();
-       verDatos();
-    }//GEN-LAST:event_InsertarActionPerformed
-
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int c;
+            }catch(Exception e){
+            
+            }
+        }
+        
         try{
-            c = Tablajugadores.getSelectedRow();
-            Lis.remove(c);
+            Usuarios aux;
+            Escribe = new PrintWriter(file, "utf-8");
+            for(int i =0; i<Lis.size(); i++){
+                aux = Lis.get(i);
+                aux.guardar(Escribe);
+                
+            }
+            Escribe.close();
+        }catch(Exception e){
             
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Escoge una fila");
+        }
+    }
+    /*
+    public void cargar(){
+        File Archivo = new File("Usuarios.txt");
+        FileReader Leer;
+        BufferedReader Almacen;
+        Usuarios per, aux = new Usuarios();
+        try{
+            Leer = new FileReader(Archivo);
+            Almacen = new BufferedReader(Leer);
+            per = aux.cargar(Almacen);
+            while(per != null){
+                Lis.add(per);
+                per = aux.cargar(Almacen);
+            }
+            Almacen.close();
+            Leer.close();
+            
+        }catch(Exception e){
             
         }
         verDatos();
-    }//GEN-LAST:event_EliminarActionPerformed
+    }*/
+        
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        String botones[] = {"Si", "No"};
+        int n = JOptionPane.showOptionDialog(null, "Desea guardar la Informacion","Titulo", 0,0,null,botones,null);
+        if(n==0){
+            guardar();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        this.setVisible(false);
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_VolverActionPerformed
 
     private void CambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarActionPerformed
         int c, id;
@@ -267,18 +251,47 @@ public class Tabladeusuarios extends javax.swing.JFrame {
             aux = Lis.get(c);
             id = Integer.parseInt(JOptionPane.showInputDialog("Nuevo Id"));
             aux.setId(id);
-            
+
         } catch(Exception e ){
             JOptionPane.showMessageDialog(null, "Escoge una fila");
-            
+
         }
         verDatos();
     }//GEN-LAST:event_CambiarActionPerformed
 
-    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        this.setVisible(false);
-        new Menu().setVisible(true);
-    }//GEN-LAST:event_VolverActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int c;
+        try{
+            c = Tablajugadores.getSelectedRow();
+            Lis.remove(c);
+
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Escoge una fila");
+
+        }
+        verDatos();
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
+        String nombre, apellidos;
+        int id;
+        try{
+            nombre = Nombre.getText();
+            apellidos = Apellidos.getText();
+            id = Integer.parseInt(ID.getText());
+            Lis.add(new Usuarios(nombre, apellidos, id));
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "ingresar los datos");
+
+        }
+        limpiar();
+        verDatos();
+    }//GEN-LAST:event_InsertarActionPerformed
+
+    private void IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDActionPerformed
     
     private void verDatos(){
         String Mat[][] = new String[Lis.size()][3];
@@ -345,7 +358,8 @@ public class Tabladeusuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

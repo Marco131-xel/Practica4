@@ -29,19 +29,20 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
         Reportes = new javax.swing.JButton();
         Insertarjugadores = new javax.swing.JButton();
         Jugar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setText("jLabel1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Captura de pantalla 2021-06-29 120139.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, 80));
 
         Salir.setBackground(new java.awt.Color(255, 255, 255));
         Salir.setForeground(new java.awt.Color(0, 0, 0));
@@ -51,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 60, -1));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 60, -1));
 
         Reportes.setBackground(new java.awt.Color(255, 255, 255));
         Reportes.setForeground(new java.awt.Color(0, 0, 0));
@@ -61,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
                 ReportesActionPerformed(evt);
             }
         });
-        jPanel1.add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
+        jPanel1.add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
 
         Insertarjugadores.setBackground(new java.awt.Color(255, 255, 255));
         Insertarjugadores.setForeground(new java.awt.Color(0, 0, 0));
@@ -71,7 +72,7 @@ public class Menu extends javax.swing.JFrame {
                 InsertarjugadoresActionPerformed(evt);
             }
         });
-        jPanel1.add(Insertarjugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
+        jPanel1.add(Insertarjugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, -1));
 
         Jugar.setBackground(new java.awt.Color(255, 255, 255));
         Jugar.setForeground(new java.awt.Color(0, 0, 0));
@@ -81,7 +82,7 @@ public class Menu extends javax.swing.JFrame {
                 JugarActionPerformed(evt);
             }
         });
-        jPanel1.add(Jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
+        jPanel1.add(Jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Serpientes.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 500));
@@ -162,8 +163,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton Jugar;
     private javax.swing.JButton Reportes;
     private javax.swing.JButton Salir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
